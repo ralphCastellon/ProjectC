@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>PPV</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Fontastic Custom icon font-->
+    <link rel="stylesheet" href="css/fontastic.css">
+    <!-- Google fonts - Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <!-- jQuery Circle-->
+    <link rel="stylesheet" href="css/grasp_mobile_progress_circle-1.0.0.min.css">
+    <!-- Custom Scrollbar-->
+    <link rel="stylesheet" href="vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="css/style.blue.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/favicon/favicon.ico">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+  </head>
+  <body>
+    <!-- Side Navbar -->
+    <nav class="side-navbar">
+      <div class="side-navbar-wrapper">
+        <!-- Sidebar Header    -->
+        <div class="sidenav-header d-flex align-items-center justify-content-center">
+          <!-- User Info-->
+          <div class="sidenav-header-inner text-center"><img src="img/avatar-5.jpg" alt="person" class="img-fluid rounded-circle">
+            <h2 class="h5">Anderson Hardy</h2><span>Contadora</span>
+          </div>
+          <!-- Small Brand information, appears on minimized sidebar-->
+          <div class="sidenav-header-logo"><a href="flesnic.jsp" class="brand-small text-center"> <strong>F</strong><strong class="text-primary">N</strong></a></div>
+        </div>
+        <!-- Sidebar Navigation Menus-->
+        <div class="main-menu">
+          <h5 class="sidenav-heading">Principal</h5>
+          <ul id="side-main-menu" class="side-menu list-unstyled">                  
+            <li><a href="flesnic.jsp"> <i class="icon-home"></i>Home</a></li>
+            <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon icon-check"></i>Cuentas</a>
+              <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+                <li><a href="asientoContable.jsp">Asiento contable</a></li>
+                 <li><a href="cuentasMayores.jsp">Cuentas Mayores</a></li>
+                <li><a href="cuentas.jsp">Sub-Cuentas</a></li>
+                <li><a href="cabeceraComprobante.jsp">Cabecera de Comprobante</a></li>
+                <li><a href="detalleComprobante.jsp">Detalle de Comprobante</a></li>
+                <li><a href="tipoComprobante.jsp">Tipo de Comprobante</a></li>
+                <li><a href="encabezado.jsp">Encabezados</a></li>
+                <li><a href="activoFijo.jsp">Activos Fijos</a></li>
+              </ul>
+            </li>
+            <li><a href="#exampledropdownDropdown2" aria-expanded="false" data-toggle="collapse"> <i class="icon icon-padnote"></i>Reportes</a>
+              <ul id="exampledropdownDropdown2" class="collapse list-unstyled ">
+              	<li><a href="comprobanteDiario.jsp">Comprobante Diario</a></li>
+              	<li><a href="libroMayor.jsp">Libro Mayor</a></li>
+              </ul>
+            </li>
+            <li><a href="#exampledropdownDropdown3" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Configuraciones</a>
+              <ul id="exampledropdownDropdown3" class="collapse list-unstyled ">
+                <li><a href="anioFiscal.jsp">Año Fiscal</a></li>
+                <li><a href="periodoFiscal.jsp">Periodo Fiscal</a></li>
+                <li><a href="moneda.jsp">Monedas</a></li>
+                <li><a href="tasaCambios.jsp">Tasa de Cambio</a></li>
+              </ul>
+            </li>
+
+             <li><a href="#exampledropdownDropdown4" aria-expanded="false" data-toggle="collapse"> <i class="icon icon-user"></i>Seguridad</a>
+              <ul id="exampledropdownDropdown4" class="collapse list-unstyled ">
+               <li><a href="Usuarios.jsp">Control de Usuarios</a></li>
+               <li><a href="Roles.jsp">Control Roles</a></li>
+               <li><a href="Opciones.jsp">Control Opciones</a></li>
+                <li><a href="Permisos.jsp">Control Permisos</a></li>
+                <li><a href="asignarRolUser.jsp">Asignar rol a usuario</a></li>              
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="page">
+      <!-- navbar-->
+      <header class="header">
+        <nav class="navbar">
+          <div class="container-fluid">
+            <div class="navbar-holder d-flex align-items-center justify-content-between">
+              <div class="navbar-header"><a id="toggle-btn" href="#" class="menu-btn"><i class="icon-bars"> </i></a><a href="flesnic.jsp" class="navbar-brand">
+                  <div class="brand-text d-none d-md-inline-block"><span><strong class="text-primary">FlesNic</strong></span></div></a></div>
+              <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+                
+                <li class="nav-item"><a href="../Login/login.jsp" class="nav-link logout">Logout<i class="fa fa-sign-out"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+       <!---Table----->
+          <div class="row">
+            <div class="col-lg-10">
+              <div class="card">
+                <div class="card-header">
+                  <h4>Monedas</h4>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                           <th>Descripcion</th>
+                           <th>Nivel</th>
+                           <th>Numero Cuentas</th>
+                           <th>Tipo Cuentas</th>
+                          <th>acciones</th>
+                        </tr>
+                      </thead>
+                      <tbody>                    
+                        <tr>
+                          <th scope="row"></th>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+
+                        <td align="center">
+                        <a  onClick="eliminarSubCuentas('');">
+	                                       		<i class="fa fa-user-times" title="Eliminar Sub-Cuenta"></i>
+                         </a>
+                        </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+       <!---crear Año fiscal---->
+              <div class="col-lg-2">
+              <div class="card">
+                <div class="card-header d-flex align-items-center">
+                  <h4>Crear Sub-Cuentas</h4>
+                </div>
+                <div class="card-body text-center">
+                  <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary">Crear</button>
+                  <!-- Modal-->
+                  <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+                    <div role="document" class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 id="exampleModalLabel" class="modal-title">Crear Sub-Cuentas</h5>
+                          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body">
+<!--       start my form -->
+      <form  action="../Sl_SubCuentas" method="post">
+                           <div class="form-group">       
+                              <label>Descripcion</label>
+                              <textarea rows="5" cols="50" placeholder="Descrición de la cuenta" class="form-control" name="descripcion" id="descripcion"></textarea>
+                            </div>
+                            <div class="form-group">
+                              <label>Nivel</label>
+                              <input type="text" placeholder="nivel de la cuenta" class="form-control" name="nivel" id="nivel">
+                            </div>
+                            <div class="form-group">
+                              <label>Numero de Cuenta</label>
+                              <input type="number" placeholder="1,2,3,..." class="form-control" name="numeroCuenta" id="numeroCuenta">
+                            </div>
+                            <div class="form-group">
+                              <label>Tipo de cuenta</label>
+                              <input type="text" placeholder="Tipo de la cuenta" class="form-control" name="TipoCuenta" id="TipoCuenta">
+                            </div>
+                             <div class="form-group">
+                              <label>Cuenta Mayor</label>
+                               <select name="cuentaMayor" id="cuentaMayor">
+                              		<option>Seleccione una cuenta mayor</option>
+                              		<option value=""></option>
+
+                            </select>
+                            </div>
+                            <div class="modal-footer">
+                          <button type="reset" data-dismiss="modal" class="btn btn-secondary">Cancelar</button>
+                          <button type="submit" class="btn btn-primary">Guardar</button>
+                        	</div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+                         </div>
+  <!-- Javascript files-->
+  <script>
+      function eliminarSubCuentas(idCuentas){
+   	   
+    		   location.href="../Sl_SubCuentas?idSC="+idCuentas;
+    	return false;
+		}
+      
+    </script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/grasp_mobile_progress_circle-1.0.0.min.js"></script>
+    <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
+    <script src="vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/charts-home.js"></script>
+    <!-- Main File-->
+    <script src="js/front.js"></script>
+
+</body>
+</html>
