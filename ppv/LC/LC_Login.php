@@ -1,36 +1,41 @@
 <?php
-include "connection.php";
-$conn = connect();
 session_start();
+include "connection.php";
+global $conn;
 if (session_status() === PHP_SESSION_ACTIVE) {
-    if (isset($_POST['login'])) {
-        $pass = strval($_POST['pass']);
-        $_SESSION['user'] = $_POST['name'];
-        $_SESSION['psw'] = $pass;
-        logIn($_POST['name'], $pass);
-    } elseif (isset($_GET['logout'])) {
-        logOut($_SESSION['user'], $_SESSION['psw']);
+    if (isset($_POST['loginAdmin'])) {
+        logInAdmin($_POST['name'], $_POST['pass']);
+    }elseif (isset($_POST['loginUser'])) {
+        logInUsers($_POST['name'], $_POST['pass']);
+    }elseif (isset($_GET['logoutUser'])) {
+        logOutUsers($_SESSION['user'], $_SESSION['psw']);
+    }elseif (isset($_GET['logoutAdmin'])) {
+        logOutAdmin($_SESSION['admin'], $_SESSION['psw']);
     } elseif (isset($_POST['signup'])){
         $pass = strval($_POST['pass']);
         singUp($_POST['name'],$_POST['lastName1'],$_POST['lastName2'],$_POST['nick'],$pass,$_POST['email'],$_POST['age'],$_POST['phone']);
     }
 } else {
-    header('location: ../views/Login/login.php');
+    header('location: ../views/login.php');
     die();
 }
-function logIn($user, $psw){
+function logInAdmin($user, $psw){
     global $conn;
     try {
-        $query = "CALL login('$user','$psw')";
+        $query = "CALL loginAdmin('$user','$psw')";
         $result = $conn->query($query);
         if ($result->num_rows > 0) {
+            $row = mysqli_fetch_array($result);
             echo "<script>console.log('logIn successfully');</script>";
+            $_SESSION['admin'] = $user;
+            $_SESSION['psw'] = $psw;
+            $_SESSION['img'] = $row[10];
             $_SESSION['start'] = time();
-            $_SESSION['expire'] = $_SESSION['start'] + (5 * 60);
-            header("location: ../views/Dashboard/Ppv.php");
+            $_SESSION['expire'] = $_SESSION['start'] + 300;
+            header("location: ../views/index.php");
             die();
         } else {
-            header("location: ../views/Login/login.php");
+            header("location: ../views/Administracion.php");
             die();
         }
     } catch (mysqli_sql_exception $e) {
@@ -39,15 +44,15 @@ function logIn($user, $psw){
         $conn->close();
     }
 }
-
-function logOut($user, $psw){
+function logOutAdmin($user, $psw){
     global $conn;
     try {
-        $query = "CALL logout('$user','$psw')";
+        $query = "CALL logoutAdmin('$user','$psw')";
         $result = $conn->query($query);
         if ($result->num_rows > 0) {
             echo "<script>console.log('logOut successfully');</script>";
-            header('location: ../views/Login/login.php');
+            session_destroy();
+            header('location: ../views/Administracion.php');
             die();
         } else {
             echo "<script>console.log('$conn->error');</script>";
@@ -58,16 +63,62 @@ function logOut($user, $psw){
         $conn->close();
     }
 }
-// this is the sign Up for standard users
-// have a mistake I don't know what it is I need to solved
+function logInUsers($user, $psw){
+    global $conn;
+    try {
+        $query = "CALL login('$user','$psw')";
+        $result = $conn->query($query);
+        if ($result->num_rows > 0) {
+           $row = mysqli_fetch_array($result);
+            echo "<script>console.log('logIn users successfully');</script>";
+            $_SESSION['user'] = $user;
+            $_SESSION['psw'] = $psw;
+            $_SESSION['img'] = $row[10];
+            $_SESSION['start'] = time();
+            $_SESSION['expire'] = $_SESSION['start'] + 300;
+            header("location: ../views/index.php");
+            die();
+        } else {
+            header("location: ../views/login.php");
+            die();
+        }
+    } catch (mysqli_sql_exception $e) {
+        echo $e->getMessage();
+    } finally {
+        $conn->close();
+    }
+}
+function logOutUsers($user, $psw){
+    global $conn;
+    try {
+        $query = "CALL logout('$user','$psw')";
+        $result = $conn->query($query);
+        if ($result->num_rows > 0) {
+            echo "<script>console.log('logOut successfully');</script>";
+            session_destroy();
+            header('location: ../views/login.php');
+            die();
+        } else {
+            echo "<script>console.log('$conn->error');</script>";
+        }
+    } catch (mysqli_sql_exception $e) {
+        echo $e->getMessage();
+    } finally {
+        $conn->close();
+    }
+}
 function singUp($name,$lastName1,$lastName2,$nick,$psw,$email,$age,$phone){
     global $conn;
     try {
-        $query = "CALL addUser('$name','$lastName1','$lastName2','$nick','$psw','$email','$age','$phone')";
-        $result = $conn->query($query);
-        if ($result->num_rows > 0) {
+        $url = "";
+        $query = "CALL addUser(?,?,?,?,?,?,?,?,?)";
+        $stm = $conn->prepare($query);
+        $stm->bind_param("ssssssiis",$name,$lastName1,$lastName2,$nick,$psw,$email,$age,$phone,$url);
+        $stm->execute();
+        $result = $stm->close();
+        if ($result > 0) {
             echo "<script>console.log('signUp successfully');</script>";
-            header('location: ../views/Login/login.php');
+            header('location: ../views/login.php');
             die();
         } else {
             echo "<script>console.log('$conn->error');</script>";

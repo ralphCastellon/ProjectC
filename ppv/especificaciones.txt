@@ -1,0 +1,88 @@
+Especificaciones
+
+Administradores:
+	perona con privilegios
+Usuarios_Estandar:
+	usuario estandar
+Pisos:
+	descripcion ->(numeroHabitaciones, numeroBaños, metrosCuadreados, estadoDelInmueble, SistemaDeCalefacción, EstaAmueblado)
+Mensaje:
+	Texto que podra enviarse a través de un sistema de mensajería interno, solo entre usuario_Estandar y Admin
+Loguearse: 
+	superar el login para cada usuario (estandar y admin)
+
+Casos de usos
+usuario_Estandar:
+	Loguearse
+	ver piso
+	ver descripcion 
+	escribir mensaje
+	ver perfil (tendra solo dos secciones la de editar perfil y la de favoritos)
+	modificar perfil
+	dar de baja
+	Cerrar sesion 
+	añadir a favoritos
+	leer mensajes
+	eliminar mensajes
+Administrador:
+	leer mensaje
+	eliminar mensaje
+	escribir mensaje
+	eliminar usuarios
+	cambiar logo
+	crear administradores
+	eliminar piso
+	modificar piso
+	añadir piso
+
+Casos de usos detallados
+ver piso:
+	solo los usuarios y usuarios estandar podrán ver los pisos y estos tendrán al menos una foto.
+ver descripcion del piso:
+	solo usuarios estandar podrán ver la descripcion, además se podrá descargar como pdf (incluida las img)
+escribir mensajes al admin:
+	solo users standar podrán enviar mensajes o pedir una cita
+like o favoritos:
+	users standar podrán añadirlos a sus favoritos 
+ver perfil:
+	se mostrará todos los datos personales, tendrá sección de favoritos
+modificar el perfil:
+	se pueden cambiar todos los datos y la contraseña estará en una subsección
+dar de baja:
+	un usuario podrá eliminar su cuenta para ello se le pide la contraseña
+añadir un piso:
+	solo un admini podrá añadir un piso, también se añadirá una opinion (la del admin)
+modificar un piso:
+	solo un admin podrá modificar un piso
+eliminar un piso:
+	solo un admin podrá eliminar un piso
+leer mensaje:
+	un admin podrá leer mensajes que un us envie, se han de diferenciar los mensajes leidos de los que no
+eliminar mensaje:
+	un admins podrá eliminar mensajes y se eliminarán de la bbdd
+eliminar usuarios:
+	un admini podrá eliminar a cualquier usuario
+hacer admins:
+	un admin podrá crear un nuevo administrador 
+modificar logo de la página:
+	un admin podrá cambiar el logo de la página
+
+
+Tablas
+
+Pisos ->titulo, numero de habitaciones, precio, descripcion, distancia al colegio montessori (km) y telefono de contacto, tipo de inmueble 
+(adosado, duplex), renta o venta
+Imagenes pisos -> id_pisos, url_picture
+usuario ->nick (unique), contraseña(minimo 6 caracteres), apellido1, apellido2, email, edad, telefono
+administradores ->nick (unique), contraseña(minimo 6 caracteres), apellido1, apellido2, email, edad, telefono
+mensajes ->leido (boolean), mensaje, id_usuario, id_admin
+opinión ->id_admin, opinion
+
+
+
+
+ Los pisos deberán estar paginados. 
+la pagina deberá tener 4 niveles de profundidad
+
+para lo del tiempo en la sesiones(recuerda que son 5 minutos)
+https://es.stackoverflow.com/questions/95033/limitar-tiempo-de-sesion
